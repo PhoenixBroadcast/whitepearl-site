@@ -1,0 +1,12 @@
+// Cloudflare hosting for whitepearltravels.com.
+// Everything in public/ is the website; nothing else in this folder is served.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "whitepearl-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    // An address that does not exist shows public/404.html with a real 404 status.
+    "not_found_handling": "404-page"
+  }
+}
