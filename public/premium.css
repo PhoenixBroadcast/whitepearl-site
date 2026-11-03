@@ -585,3 +585,22 @@ html:not([lang="en"]) [data-en-only] { display: none; }
 
 /* ---------- prototype notes: only while "Show what to confirm" is on ---------- */
 body:not(.show-ph) :is(.confirm-pill, .consent, .car-specs li.tbc, .specs > [data-confirm]) { display: none; }
+
+/* ---------- the new Traveller's posters (3 Nov) ---------- */
+.poster-col { min-width: 0; width: 100%; max-width: 470px; justify-self: center; }
+.posters .cinema-frame { aspect-ratio: 3 / 4; background: #0b1120; touch-action: pan-y; }
+.slides { position: absolute; inset: 0; }
+.slide { position: absolute; inset: 0; margin: 0; opacity: 0; visibility: hidden; transition: opacity .9s var(--ease), visibility 0s linear .9s; }
+.slide.is-on { opacity: 1; visibility: visible; transition: opacity .9s var(--ease); }
+.slide img { width: 100%; height: 100%; object-fit: contain; -webkit-user-drag: none; user-select: none; }
+.slide-ctrl { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 34px; }
+.slide-btn { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid rgba(227, 201, 143, .5); border-radius: 50%; background: transparent; color: var(--gold-soft); cursor: pointer; transition: background-color .3s var(--ease); }
+.slide-btn:hover { background: rgba(227, 201, 143, .14); }
+.slide-btn:focus-visible, .slide-dots button:focus-visible { outline: 2px solid var(--gold-soft); outline-offset: 3px; }
+.slide-btn svg { width: 18px; height: 18px; }
+.slide-btn.prev svg { transform: rotate(180deg); }
+.slide-dots { display: flex; }
+.slide-dots button { width: 30px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.slide-dots button::before { content: ""; width: 8px; height: 8px; border-radius: 99px; background: rgba(255, 255, 255, .35); transition: width .4s var(--ease), background-color .4s var(--ease); }
+.slide-dots button[aria-current="true"]::before { width: 22px; background: var(--gold-soft); }
+@media (prefers-reduced-motion: reduce) { .slide, .slide.is-on { transition: none; } }

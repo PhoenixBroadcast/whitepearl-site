@@ -35,6 +35,15 @@ window.SITE = {
       { k: "Engine", v: "FM 2.6 CR diesel" },
       { k: "Seats", v: "To confirm", confirm: true },
       { k: "AC", v: "To confirm", confirm: true }
+    ],
+    // Jobin's own posters, shown whole as a slideshow in the New Arrival band (first one first).
+    // They say "Coming soon": swap them for "now on the road" posters once the Traveller is out.
+    posters: [
+      { src: "img/new/poster-1.jpg", alt: "Poster: New Traveler coming soon. The white Force Traveller head-on, lights on, in golden light. Spacious, air conditioned, safe, for groups." },
+      { src: "img/new/poster-2.jpg", alt: "Poster: New Traveler coming soon, the Force Traveller in front of a lake and mountains at sunset. Luxury seating, AC comfort, safety first, spacious luggage." },
+      { src: "img/new/poster-3.jpg", alt: "Poster: New arrival coming soon, the Traveller from the front and the back. Outstation trips, corporate travel, tour packages, airport transfers." },
+      { src: "img/new/poster-4.jpg", alt: "Poster: New Traveler coming soon under a bright sky. Comfort, safety, reliability; spacious, premium AC interiors, more space." },
+      { src: "img/new/poster-5.jpg", alt: "Poster: New Traveler coming soon, the Force Traveller head-on through mist. Premium comfort, safety first, powerful performance." }
     ]
   },
 
@@ -50,7 +59,7 @@ window.SITE = {
   // Real photos for the two Travellers. The sedan and SUV use sample photos (marked on the card)
   // until Jobin confirms which cars he has: change the note, or delete the card.
   fleet: [
-    { name: "Force Traveller", badge: "New arrival", isNew: true, photo: "img/new-side.jpg", pos: "50% 55%", seats: "Seats to confirm", ac: "AC to confirm", note: "Brand new, ready for the 2026–27 season.", rate: "Rate on request" },
+    { name: "Force Traveller", badge: "New arrival", isNew: true, photo: "img/new/traveller-front.jpg", pos: "50% 45%", seats: "Seats to confirm", ac: "AC to confirm", note: "Brand new, ready for the 2026–27 season.", rate: "Rate on request" },
     { name: "Force Traveller", badge: "KL 67 9998", photo: "img/traveller-kl67.jpg", pos: "50% 64%", seats: "Seats to confirm", ac: "AC to confirm", note: "Our trusted Traveller, WHITE PEARL on the windscreen.", rate: "Rate on request" },
     { name: "Sedan", badge: "Toyota Etios or similar", photo: "img/stock/car.jpg", pos: "55% 62%", sample: true, seats: "4 seats", ac: "AC", note: "A comfortable car with a driver, for couples, small families and airport runs.", rate: "Rate on request", guess: true },
     { name: "SUV", badge: "Innova Crysta or similar", photo: "img/stock/suv.jpg", pos: "42% 55%", sample: true, seats: "7 seats", ac: "AC", note: "Room for a family of seven and their bags, for hill roads and long drives.", rate: "Rate on request", guess: true }

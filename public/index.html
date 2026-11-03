@@ -234,9 +234,14 @@
       <dl class="specs" id="specs"></dl>
       <a class="btn btn-gold btn-lg" href="#book" data-book="New Force Traveller"><span>Book the new Traveller</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
-    <div class="cinema" id="cinema">
-      <div class="cinema-frame" id="cinema-frame">
-        <img src="img/new-side.jpg" width="1400" height="1050" loading="lazy" alt="The new Force Traveller from the side, its seats still in their wrapping">
+    <div class="poster-col">
+      <div class="cinema posters" id="cinema" role="region" aria-roledescription="slideshow" aria-label="Posters of the new Force Traveller">
+        <div class="cinema-frame" id="cinema-frame"><div class="slides" id="slides"></div></div>
+      </div>
+      <div class="slide-ctrl" id="slide-ctrl" hidden>
+        <button class="slide-btn prev" id="slide-prev" type="button" aria-label="Previous poster"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <div class="slide-dots" id="slide-dots"></div>
+        <button class="slide-btn" id="slide-next" type="button" aria-label="Next poster"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
       </div>
     </div>
   </div>

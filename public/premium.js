@@ -69,6 +69,55 @@
     return "<li" + (f.confirm ? " data-confirm" : "") + ">" + icon(f.icon) + "<b>" + esc(f.title) + (f.confirm ? " " + pill : "") + "</b><p>" + esc(f.body) + "</p></li>";
   }).join("");
 
+  /* the new Traveller's posters: a calm slideshow (5 s a poster; stops on hover, touch or focus, and off screen) */
+  (function posters() {
+    var P = N.posters || [], box = $("#slides");
+    if (!box || !P.length) return;
+    box.innerHTML = P.map(function (p, i) {
+      return '<figure class="slide' + (i ? "" : " is-on") + '"' + (i ? ' aria-hidden="true"' : "") + '><img src="' + esc(p.src) + '" alt="' + esc(p.alt) + '" decoding="async"' + (i ? ' loading="lazy"' : "") + "></figure>";
+    }).join("");
+    if (P.length < 2) return;
+    var slides = box.children, dots = $("#slide-dots"), at = 0, timer = null, inView = false, held = false;
+    dots.innerHTML = P.map(function (p, i) { return '<button type="button" aria-label="Poster ' + (i + 1) + " of " + P.length + '"' + (i ? "" : ' aria-current="true"') + "></button>"; }).join("");
+    $("#slide-ctrl").hidden = false;
+    function go(n) {
+      at = (n + P.length) % P.length;
+      for (var k = 0; k < slides.length; k++) {
+        slides[k].classList.toggle("is-on", k === at);
+        if (k === at) slides[k].removeAttribute("aria-hidden"); else slides[k].setAttribute("aria-hidden", "true");
+        if (k === at) dots.children[k].setAttribute("aria-current", "true"); else dots.children[k].removeAttribute("aria-current");
+      }
+      var next = slides[(at + 1) % P.length].querySelector("img"); if (next) next.loading = "eager";
+    }
+    var still = /[?&]still(?![a-z])/.test(location.search);
+    function tick() {
+      clearInterval(timer); timer = null;
+      if (!reduced && !still && inView && !held && !document.hidden) timer = setInterval(function () { go(at + 1); }, 5000);
+    }
+    $("#slide-prev").addEventListener("click", function () { go(at - 1); tick(); });
+    $("#slide-next").addEventListener("click", function () { go(at + 1); tick(); });
+    $$("#slide-dots button").forEach(function (b, i) { b.addEventListener("click", function () { go(i); tick(); }); });
+    var col = $(".poster-col"), x0 = null;
+    col.addEventListener("mouseenter", function () { held = true; tick(); });
+    col.addEventListener("mouseleave", function () { held = false; tick(); });
+    col.addEventListener("focusin", function () { held = true; tick(); });
+    col.addEventListener("focusout", function () { held = false; tick(); });
+    col.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { go(at - 1); e.preventDefault(); }
+      if (e.key === "ArrowRight") { go(at + 1); e.preventDefault(); }
+    });
+    box.addEventListener("pointerdown", function (e) { x0 = e.clientX; held = true; tick(); });
+    box.addEventListener("pointerup", function (e) {
+      if (x0 !== null && Math.abs(e.clientX - x0) > 40) go(at + (e.clientX < x0 ? 1 : -1));
+      x0 = null; held = false; tick();
+    });
+    box.addEventListener("pointercancel", function () { x0 = null; held = false; tick(); });
+    document.addEventListener("visibilitychange", tick);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { inView = es[0].isIntersecting; tick(); }, { threshold: 0.35 }).observe(box);
+    } else { inView = true; tick(); }
+  })();
+
   $("#offer-grid").innerHTML = (C.offers || []).map(function (o) {
     var extra = ' data-trip="' + esc(o.trip) + '"' + (o.to ? ' data-to="' + esc(o.to) + '"' : "") + (o.from ? ' data-from="' + esc(o.from) + '"' : "");
     var top = o.photo ? photo(o.photo, o.title, o.pos) : icon(o.icon);
@@ -280,7 +329,6 @@
 
   G.fromTo("#cinema-frame", { clipPath: "inset(8% 8% 8% 8%)" }, { clipPath: "inset(0% 0% 0% 0%)", ease: "none",
     scrollTrigger: { trigger: "#cinema", start: "top 90%", end: "center 55%", scrub: 0.6 } });
-  G.fromTo("#cinema-frame img", { scale: 1.2 }, { scale: 1, ease: "none", scrollTrigger: { trigger: "#cinema", start: "top bottom", end: "bottom top", scrub: true } });
 
   $$("[data-reveal]").forEach(function (el) {
     G.to(el, { opacity: 1, y: 0, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 88%", once: true } });
