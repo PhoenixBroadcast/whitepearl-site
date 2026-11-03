@@ -567,3 +567,21 @@ html:not([lang="en"]) [data-en-only] { display: none; }
   .greet { gap: 2px 20px; }
   .greet i, .call-line .sep { display: none; }
 }
+
+/* ---------- photos in the cards (3 Nov) ---------- */
+.offer-top.has-photo { height: auto; aspect-ratio: 16 / 10; background: var(--navy); }
+.offer-top.has-photo::after { display: none; }
+.offer-top img, .stay-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.offer-top .offer-tag { z-index: 1; }
+.offer:hover .offer-top img, .stay:hover .stay-pic img { transform: scale(1.05); }
+.car-sample { position: absolute; right: 10px; bottom: 10px; padding: 3px 8px; background: rgba(18, 26, 46, .62); color: rgba(255, 255, 255, .92); font: 500 11px/1.3 var(--sans); letter-spacing: .04em; }
+.tour-art img { width: 100%; height: 100%; object-fit: cover; }
+.car-rate, .offer-price { font-size: 19px; white-space: nowrap; }
+.tour-top { justify-content: flex-end; }
+.stay.has-photo { padding: 0; display: flex; flex-direction: column; overflow: hidden; }
+.stay.has-photo::before { z-index: 1; }
+.stay-pic { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--cream); }
+.stay.has-photo .stay-body { padding: 24px 26px 28px; }
+
+/* ---------- prototype notes: only while "Show what to confirm" is on ---------- */
+body:not(.show-ph) :is(.confirm-pill, .consent, .car-specs li.tbc, .specs > [data-confirm]) { display: none; }

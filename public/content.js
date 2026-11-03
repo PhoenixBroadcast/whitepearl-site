@@ -39,20 +39,21 @@ window.SITE = {
   },
 
   pilgrim: [
-    { title: "Erumeli to Nilakkal and back", when: "Same day", body: "After prayers at Erumeli we drive you up to Nilakkal base camp, wait while you climb, and bring you back down.", vehicles: "Traveller · Car", price: "From ₹ ____", ph: true },
-    { title: "Railway station darshan trip", when: "1–2 days", body: "Pickup at Chengannur, Kottayam or Thiruvalla station, Erumeli on the way, Nilakkal, and back to your train.", vehicles: "Traveller · Car", price: "From ₹ ____", ph: true },
-    { title: "Airport darshan trip", when: "2 days", body: "Pickup at Kochi or Thiruvananthapuram airport, a room for the night, darshan, and a drop for your flight home.", vehicles: "Traveller · Car", price: "From ₹ ____", ph: true },
+    { title: "Erumeli to Nilakkal and back", when: "Same day", body: "After prayers at Erumeli we drive you up to Nilakkal base camp, wait while you climb, and bring you back down.", vehicles: "Traveller · Car", price: "Price on request", ph: true },
+    { title: "Railway station darshan trip", when: "1–2 days", body: "Pickup at Chengannur, Kottayam or Thiruvalla station, Erumeli on the way, Nilakkal, and back to your train.", vehicles: "Traveller · Car", price: "Price on request", ph: true },
+    { title: "Airport darshan trip", when: "2 days", body: "Pickup at Kochi or Thiruvananthapuram airport, a room for the night, darshan, and a drop for your flight home.", vehicles: "Traveller · Car", price: "Price on request", ph: true },
     { title: "Petta Thullal at Erumeli", when: "January", body: "Join the Petta Thullal in Erumeli before the climb. We know the town's lanes on festival days.", vehicles: "Traveller", price: "Ask for group price", ph: true },
-    { title: "Temple circuit on the way home", when: "1 day", body: "Pandalam Valiyakoyikkal, Aranmula Parthasarathy, Chengannur Mahadeva and more, in one unhurried day.", vehicles: "Any vehicle", price: "From ₹ ____", ph: true },
-    { title: "Darshan, then the hills", when: "3–4 days", body: "After darshan, two days in Munnar or Thekkady before you head home. One driver for the whole trip.", vehicles: "Traveller · Car", price: "From ₹ ____", ph: true }
+    { title: "Temple circuit on the way home", when: "1 day", body: "Pandalam Valiyakoyikkal, Aranmula Parthasarathy, Chengannur Mahadeva and more, in one unhurried day.", vehicles: "Any vehicle", price: "Price on request", ph: true },
+    { title: "Darshan, then the hills", when: "3–4 days", body: "After darshan, two days in Munnar or Thekkady before you head home. One driver for the whole trip.", vehicles: "Traveller · Car", price: "Price on request", ph: true }
   ],
 
-  // Real photos for the two Travellers; the drawn cards are guesses to confirm or delete.
+  // Real photos for the two Travellers. The sedan and SUV use sample photos (marked on the card)
+  // until Jobin confirms which cars he has: change the note, or delete the card.
   fleet: [
-    { name: "Force Traveller", badge: "New arrival", isNew: true, photo: "img/new-side.jpg", pos: "50% 55%", seats: "Seats to confirm", ac: "AC to confirm", note: "Brand new, ready for the 2026–27 season.", rate: "₹ __ /km" },
-    { name: "Force Traveller", badge: "KL 67 9998", photo: "img/traveller-kl67.jpg", pos: "50% 64%", seats: "Seats to confirm", ac: "AC to confirm", note: "Our trusted Traveller, WHITE PEARL on the windscreen.", rate: "₹ __ /km" },
-    { name: "Car", badge: "To confirm", drawn: "sedan", seats: "4 seats", ac: "AC", note: "Does Jobin have cars? Add the models, or delete this card.", rate: "₹ __ /km", guess: true },
-    { name: "SUV", badge: "To confirm", drawn: "suv", seats: "7 seats", ac: "AC", note: "An Innova or similar? Add the models, or delete this card.", rate: "₹ __ /km", guess: true }
+    { name: "Force Traveller", badge: "New arrival", isNew: true, photo: "img/new-side.jpg", pos: "50% 55%", seats: "Seats to confirm", ac: "AC to confirm", note: "Brand new, ready for the 2026–27 season.", rate: "Rate on request" },
+    { name: "Force Traveller", badge: "KL 67 9998", photo: "img/traveller-kl67.jpg", pos: "50% 64%", seats: "Seats to confirm", ac: "AC to confirm", note: "Our trusted Traveller, WHITE PEARL on the windscreen.", rate: "Rate on request" },
+    { name: "Sedan", badge: "Toyota Etios or similar", photo: "img/stock/car.jpg", pos: "55% 62%", sample: true, seats: "4 seats", ac: "AC", note: "A comfortable car with a driver, for couples, small families and airport runs.", rate: "Rate on request", guess: true },
+    { name: "SUV", badge: "Innova Crysta or similar", photo: "img/stock/suv.jpg", pos: "42% 55%", sample: true, seats: "7 seats", ac: "AC", note: "Room for a family of seven and their bags, for hill roads and long drives.", rate: "Rate on request", guess: true }
   ],
 
   // From Jobin's posters, plus Sabarimala and hotels
@@ -78,12 +79,12 @@ window.SITE = {
       { icon: "brief", title: "Corporate & event travel", body: "Staff transport, visiting guests and events, on time." },
       { icon: "road", title: "Outstation trips", body: "Across Kerala and South India, by the day or by the km." }
     ],
-    // "Popular trips" cards. Prices are placeholders until Jobin sets them.
+    // "Popular trips" cards. Prices read "Price on request" until Jobin sets them.
     offers: [
-      { tag: "Season 2026–27", title: "Sabarimala trips", body: "Mandala–Makaravilakku bookings are open. Pickup from your home, the station or the airport.", price: "From ₹ ____", icon: "hill", c: ["#f0a23b", "#b8532a"], trip: "Pilgrimage", to: "Nilakkal / Pamba" },
-      { tag: "2 days", title: "Munnar getaway", body: "Tea hills, Eravikulam and Mattupetty dam, with the hotel booked for you.", price: "From ₹ ____", icon: "map", c: ["#3fae6a", "#0f5b47"], trip: "Kerala tour", to: "Munnar" },
-      { tag: "1 night", title: "Alleppey houseboat", body: "A night on the backwaters, with the drive there and back.", price: "From ₹ ____", icon: "bed", c: ["#22b3d6", "#12536b"], trip: "Kerala tour", to: "Alleppey" },
-      { tag: "Any hour", title: "Airport pickup", body: "Kochi and Thiruvananthapuram airports, in a clean car or Traveller.", price: "From ₹ ____", icon: "plane", c: ["#3a4a72", "#121a2e"], trip: "Station / airport transfer", from: "Kochi airport" }
+      { tag: "Season 2026–27", title: "Sabarimala trips", body: "Mandala–Makaravilakku bookings are open. Pickup from your home, the station or the airport.", price: "Price on request", photo: "img/stock/sabarimala.jpg", pos: "50% 28%", icon: "hill", c: ["#f0a23b", "#b8532a"], trip: "Pilgrimage", to: "Nilakkal / Pamba" },
+      { tag: "2 days", title: "Munnar getaway", body: "Tea hills, Eravikulam and Mattupetty dam, with the hotel booked for you.", price: "Price on request", photo: "img/stock/munnar-wide.jpg", pos: "50% 60%", icon: "map", c: ["#3fae6a", "#0f5b47"], trip: "Kerala tour", to: "Munnar" },
+      { tag: "1 night", title: "Alleppey houseboat", body: "A night on the backwaters, with the drive there and back.", price: "Price on request", photo: "img/stock/houseboat.jpg", pos: "50% 55%", icon: "bed", c: ["#22b3d6", "#12536b"], trip: "Kerala tour", to: "Alleppey" },
+      { tag: "Any hour", title: "Airport pickup", body: "Kochi and Thiruvananthapuram airports, in a clean car or Traveller.", price: "Price on request", photo: "img/stock/airport.jpg", pos: "30% 40%", icon: "plane", c: ["#3a4a72", "#121a2e"], trip: "Station / airport transfer", from: "Kochi airport" }
     ],
     ticker: ["Kochi Airport", "Munnar", "Thekkady", "Alleppey", "Kumarakom", "Vagamon", "Fort Kochi", "Kottayam", "Thiruvananthapuram", "Erumeli", "Sabarimala", "Chengannur"],
     why: [
@@ -97,21 +98,21 @@ window.SITE = {
   },
 
   tours: [
-    { place: "Munnar", days: "2 days", body: "Tea hills, Eravikulam, Mattupetty dam and cool mornings.", hue: "#2f9e5f", sky: ["#62c3ff", "#d9f3ff"], scene: "hills" },
-    { place: "Thekkady", days: "1–2 days", body: "Periyar lake, spice gardens and a boat ride at dawn.", hue: "#4b9a3a", sky: ["#ff9f5a", "#ffe3a6"], scene: "lake" },
-    { place: "Alleppey", days: "1 night", body: "A night on a houseboat through the backwaters.", hue: "#1aa3c9", sky: ["#46b7ff", "#c8efff"], scene: "boat" },
-    { place: "Kumarakom", days: "1 day", body: "Vembanad lake, the bird sanctuary and a quiet lakeside stay.", hue: "#13a39a", sky: ["#ff7a5c", "#ffd29b"], scene: "palms" },
-    { place: "Vagamon", days: "1 day", body: "Meadows, pine forest and the hills closest to Erumeli.", hue: "#58b048", sky: ["#7fd0ff", "#eaf8ff"], scene: "hills" },
-    { place: "Kochi", days: "1 day", body: "Fort Kochi, the Chinese fishing nets, Mattancherry, and the airport on the way.", hue: "#e0733d", sky: ["#ff6f61", "#ffc48a"], scene: "nets" }
+    { place: "Munnar", days: "2 days", body: "Tea hills, Eravikulam, Mattupetty dam and cool mornings.", hue: "#2f9e5f", sky: ["#62c3ff", "#d9f3ff"], scene: "hills", photo: "img/stock/munnar.jpg", pos: "55% 50%" },
+    { place: "Thekkady", days: "1–2 days", body: "Periyar lake, spice gardens and a boat ride at dawn.", hue: "#4b9a3a", sky: ["#ff9f5a", "#ffe3a6"], scene: "lake", photo: "img/stock/thekkady.jpg", pos: "46% 50%" },
+    { place: "Alleppey", days: "1 night", body: "A night on a houseboat through the backwaters.", hue: "#1aa3c9", sky: ["#46b7ff", "#c8efff"], scene: "boat", photo: "img/stock/alleppey.jpg", pos: "68% 50%" },
+    { place: "Kumarakom", days: "1 day", body: "Vembanad lake, the bird sanctuary and a quiet lakeside stay.", hue: "#13a39a", sky: ["#ff7a5c", "#ffd29b"], scene: "palms", photo: "img/stock/kumarakom.jpg", pos: "32% 50%" },
+    { place: "Vagamon", days: "1 day", body: "Meadows, pine forest and the hills closest to Erumeli.", hue: "#58b048", sky: ["#7fd0ff", "#eaf8ff"], scene: "hills", photo: "img/stock/vagamon.jpg", pos: "62% 50%" },
+    { place: "Kochi", days: "1 day", body: "Fort Kochi, the Chinese fishing nets, Mattancherry, and the airport on the way.", hue: "#e0733d", sky: ["#ff6f61", "#ffc48a"], scene: "nets", photo: "img/stock/kochi.jpg", pos: "56% 50%" }
   ],
 
   // Stays: Jobin confirmed all of these are available
   stars: [2, 3, 4, 5],
   stays: [
-    { title: "Hotel rooms", body: "Near Erumeli, Kottayam and Kochi, from simple rooms to luxury." },
-    { title: "Home stays", body: "Stay with a Kerala family, with home-cooked food." },
-    { title: "Tent stays", body: "Camps in the hills for a night under the stars." },
-    { title: "Pool resorts", body: "A resort with a pool to rest after the pilgrimage." }
+    { title: "Hotel rooms", body: "Near Erumeli, Kottayam and Kochi, from simple rooms to luxury.", photo: "img/stock/hotel.jpg", pos: "50% 62%" },
+    { title: "Home stays", body: "Stay with a Kerala family, with home-cooked food.", photo: "img/stock/homestay.jpg", pos: "45% 50%" },
+    { title: "Tent stays", body: "Camps in the hills for a night under the stars.", photo: "img/stock/tent.jpg", pos: "50% 72%" },
+    { title: "Pool resorts", body: "A resort with a pool to rest after the pilgrimage.", photo: "img/stock/pool.jpg", pos: "50% 60%" }
   ],
 
   // CONFIRM each of these with Jobin before going live
@@ -124,12 +125,9 @@ window.SITE = {
     { title: "Guests from everywhere", body: "Pilgrims from every state, and guests from abroad met at the airport." }
   ],
 
-  // Leave as placeholders until there are real reviews. Never invent them.
-  reviews: [
-    { text: "A real review from a pilgrim goes here. Ask a happy customer for two or three lines about their trip.", who: "Name, town", trip: "Trip taken" },
-    { text: "A second real review. Google Maps reviews can be copied here once the business has some.", who: "Name, town", trip: "Trip taken" },
-    { text: "A third real review, ideally from a group from Tamil Nadu, Andhra, Telangana or Karnataka.", who: "Name, town", trip: "Trip taken" }
-  ],
+  // Real reviews only — never invent them. The Reviews section stays hidden while this list is empty.
+  // Add one like: { text: "Two or three lines from the customer.", who: "Name, town", trip: "Sabarimala, Dec 2026" }
+  reviews: [],
 
   // Places on the map. kind: base | pilgrim | transit | tour. Positions approximate.
   // The moving strip of place names under the booking form

@@ -58,6 +58,7 @@
   var ARROW = '<svg aria-hidden="true"><use href="#i-arrow"/></svg>';
   function bookBtn(label, cls, extra) { return '<a class="btn ' + cls + '" href="#book" data-book="' + esc(label) + '"' + (extra || "") + '><span data-i18n="book">Book</span>' + ARROW + "</a>"; }
   var C = S.corporate || {};
+  function photo(src, alt, pos) { return '<img src="' + esc(src) + '" alt="' + esc(alt) + '" loading="lazy" decoding="async" style="object-position:' + esc(pos || "50% 50%") + '">'; }
 
   /* ---------- render ---------- */
   var N = S.newArrival;
@@ -70,7 +71,8 @@
 
   $("#offer-grid").innerHTML = (C.offers || []).map(function (o) {
     var extra = ' data-trip="' + esc(o.trip) + '"' + (o.to ? ' data-to="' + esc(o.to) + '"' : "") + (o.from ? ' data-from="' + esc(o.from) + '"' : "");
-    return '<article class="offer"><div class="offer-top" style="--c1:' + o.c[0] + ";--c2:" + o.c[1] + '"><span class="offer-tag">' + esc(o.tag) + "</span>" + icon(o.icon) + "</div>" +
+    var top = o.photo ? photo(o.photo, o.title, o.pos) : icon(o.icon);
+    return '<article class="offer"><div class="offer-top' + (o.photo ? " has-photo" : "") + '" style="--c1:' + o.c[0] + ";--c2:" + o.c[1] + '"><span class="offer-tag">' + esc(o.tag) + "</span>" + top + "</div>" +
       '<div class="offer-body"><h3>' + esc(o.title) + "</h3><p>" + esc(o.body) + '</p><div class="offer-foot"><span class="offer-price ph">' + esc(o.price) + "</span>" + bookBtn(o.title, "btn-line", extra) + "</div></div></article>";
   }).join("");
 
@@ -86,7 +88,7 @@
 
   $("#fleet-grid").innerHTML = S.fleet.map(function (v) {
     var pic = v.photo
-      ? '<img src="' + esc(v.photo) + '" alt="' + esc(v.name + ", " + v.badge) + '" loading="lazy" style="object-position:' + esc(v.pos || "50% 50%") + '">'
+      ? photo(v.photo, v.name + ", " + v.badge, v.pos) + (v.sample ? '<span class="car-sample">Sample photo</span>' : "")
       : '<span class="ghost">' + esc(v.name) + "</span>";
     var chips = [v.seats, v.ac, "Driver included"].map(function (c) { return "<li" + (/confirm/i.test(c) ? ' class="tbc" data-confirm' : "") + ">" + esc(c) + "</li>"; }).join("");
     return '<article class="car' + (v.guess ? " ph" : "") + '"><div class="car-pic">' + pic + '<span class="car-badge' + (v.isNew ? " is-new" : "") + '">' + esc(v.badge) + "</span></div>" +
@@ -94,7 +96,7 @@
       '<div class="car-foot"><span class="car-rate ph">' + esc(v.rate) + "</span>" + bookBtn(v.name + (v.isNew ? " (new)" : v.guess ? "" : " " + v.badge), "btn-line") + "</div></div></article>";
   }).join("");
 
-  /* tour art: a dusk landscape per place under a navy sky, drawn in code (photos to come) */
+  /* tour art: the place's photo; a landscape drawn in code only when a tour has no photo */
   function tourArt(tr, i) {
     var id = "ta" + i, h = tr.hue, sky = tr.sky || ["#3b2a78", "#ff8a5c"];
     var defs = '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + sky[0] + '"/><stop offset=".6" stop-color="' + sky[1] + '"/><stop offset="1" stop-color="' + sky[1] + '"/></linearGradient>' +
@@ -112,13 +114,14 @@
     return '<svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + defs + base + (land[tr.scene] || land.hills) + "</svg>";
   }
   $("#tour-grid").innerHTML = S.tours.map(function (tr, i) {
-    return '<article class="tour"><div class="tour-art">' + tourArt(tr, i) + '</div><div class="tour-top"><span class="tour-tag">Photo to come</span><span class="tour-days">' + esc(tr.days) + "</span></div>" +
+    return '<article class="tour"><div class="tour-art">' + (tr.photo ? photo(tr.photo, tr.place, tr.pos) : tourArt(tr, i)) + '</div><div class="tour-top"><span class="tour-days">' + esc(tr.days) + "</span></div>" +
       "<h3>" + esc(tr.place) + "</h3><p>" + esc(tr.body) + "</p>" + bookBtn(tr.place + " tour", "btn-glass btn-sm", ' data-trip="Kerala tour" data-to="' + esc(tr.place) + '"') + "</article>";
   }).join("");
 
   $("#stars-row").innerHTML = S.stars.map(function (n) { return '<span class="star"><i aria-hidden="true">' + new Array(n + 1).join("★") + "</i>" + n + "-star</span>"; }).join("");
   $("#stay-grid").innerHTML = S.stays.map(function (h, i) {
-    return '<div class="stay"><p class="stay-ok">Available</p><h3>' + esc(h.title) + "</h3><p>" + esc(h.body) + "</p></div>";
+    return '<div class="stay' + (h.photo ? " has-photo" : "") + '">' + (h.photo ? '<div class="stay-pic">' + photo(h.photo, h.title, h.pos) + "</div>" : "") +
+      '<div class="stay-body"><p class="stay-ok">Available</p><h3>' + esc(h.title) + "</h3><p>" + esc(h.body) + "</p></div></div>";
   }).join("");
 
   $("#why-grid").innerHTML = (C.why || S.why).map(function (w, i) {
@@ -136,8 +139,9 @@
     $("#routes").innerHTML = html;
   })();
 
+  if (!S.reviews.length) $("#reviews").hidden = true;
   $("#rev-grid").innerHTML = S.reviews.map(function (r) {
-    return '<figure class="rev ph"><span class="rev-q" aria-hidden="true">&ldquo;</span><blockquote>' + esc(r.text) + "</blockquote><figcaption><b>" + esc(r.who) + "</b><span>" + esc(r.trip) + "</span></figcaption></figure>";
+    return '<figure class="rev"><span class="rev-q" aria-hidden="true">&ldquo;</span><blockquote>' + esc(r.text) + "</blockquote><figcaption><b>" + esc(r.who) + "</b><span>" + esc(r.trip) + "</span></figcaption></figure>";
   }).join("");
 
   (function marquee() {
